@@ -1,83 +1,55 @@
 <template>
   <header>
-    
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
-
-
-      <Home/>
   </header>
 
-  <RouterView />
+
+  <button @click="getLocation()">Get Location</button>
+  <p>lat = {{ lat }}</p>
+  <p>lng = {{ lng }}</p>
+
+  Map
+  <div ref="mapContainer" class="w-full h-72"></div>
+  <!-- <RouterView /> -->
 </template>
 
 <script setup>
-import Home from './Pages/Home.vue'
+import {onMounted, ref} from 'vue'
+import L from "leaflet"
+const lat = ref(0)
+const lng = ref(0)
+const map = ref()
+const mapContainer = ref()
+onMounted(()=>{
+  map.value = L.map(mapContainer.value).setView([51.505, -0.09], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map.value);
+})
+
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.watchPosition((position)=>{
+     lat.value = position.coords.latitude
+     lng.value = position.coords.longitude
+     map.value.setView([lat.value, lng.value], 13)
+     L.marker([lat.value, lng.value], {draggable: true})
+     .addTo(map.value).
+     on("dragend",(event)=>{
+      console.log(event)
+     });
+    })
+  }else{
+    alert("error")
+  }
+}
 </script>
 
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
