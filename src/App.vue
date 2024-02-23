@@ -26,21 +26,28 @@ const map = ref()
 const mapContainer = ref()
 var myIcon = L.icon({
     iconUrl: school,
-    iconSize: [25, 25],
-    iconAnchor: [22, 94],
+    iconSize: [20, 20],
+    iconAnchor: [0, 0],
     popupAnchor: [-3, -76],
-    labelAnchor: [6, 0]
 });
 onMounted(()=>{
-  map.value = L.map(mapContainer.value).setView([7.594386, 5.299224], 18);
+  map.value = L.map(mapContainer.value, { attributionControl: false }).setView([7.594386, 5.299224], 17);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map.value);
+7.592394, 5.295203
+L.marker([7.591405, 5.294615], {icon: myIcon})
+.bindTooltip("<p class='text-center'> Computer Science <br> Department</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
 
-L.marker([7.590976, 5.294837], {icon: myIcon})
-.bindLabel('A sweet static label!', { noHide: true, direction:'auto' })
-.addTo(map.value);
+L.marker([7.592394, 5.295203], {icon: myIcon})
+.bindTooltip("<p class='text-center'> Computer Science <br> Department</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+// .bindPopup('<p class="text-center"> Computer Science <br> Department</p>')
+// .openPopup()
+// .bindLabel('A sweet static label!', { noHide: true, direction:'auto' })
+
 
 })
 
