@@ -124,7 +124,7 @@ L.marker([7.592758, 5.295910], {icon: myIcon})
 .addTo(map.value)
 
 L.marker([7.602317, 5.296464], {icon: myIcon})
-.bindTooltip("<p class='text-center'>First gate</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.bindTooltip("<p class='text-center'>Main gate</p>", {permanent: true, className: "my-label", offset: [22, 10] })
 .addTo(map.value)
 
 L.marker([7.595544, 5.295140], {icon: myIcon})
