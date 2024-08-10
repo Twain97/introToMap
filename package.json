@@ -10,7 +10,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "epic-spinners": "^2.0.0",
+    "firebase": "^10.12.5",
     "leaflet": "^1.9.4",
+    "primevue": "^4.0.4",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },

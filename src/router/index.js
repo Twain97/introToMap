@@ -1,23 +1,42 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/Pages/Home.vue'
-
+import { createRouter, createWebHashHistory } from 'vue-router'
+import landingPage from '@/Pages/landingPage.vue'
+import { auth } from '@/firebase/firebase'
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'landingPage',
+      component: landingPage
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/home',
+      name: 'home',
+      meta: {requiresAuth : true},
+      component: () => import('@/Pages/Home.vue')
+    },
+    {
+      path:'/load',
+      name:"load",
+      component:()=>import('@/views/Loading.vue')
     }
   ]
 })
 
+auth.onAuthStateChanged((user)=>{
+  if(!user){
+    return router.push('/')
+   }
+  
+
+  router.beforeEach(async(to)=>{
+    
+    if(to.path == '/' && auth.currentUser){
+      return router.push(router.currentRoute)
+    }
+    if(to.path == '/Home' && !auth.currentUser){
+      return router.push('/')
+    }
+  })
+})
 export default router
