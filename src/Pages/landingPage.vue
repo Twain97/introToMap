@@ -11,7 +11,7 @@
               
 
               
-              <Tag  @click="googleSignIn" class="mx-auto flex flex-row justify-between mt-44 py-4 pr-4 shadow-xl drop-shadow-sm rounded-full">
+              <Tag  @click="googleSignIn" class="cursor-pointer mx-auto flex flex-row justify-between mt-44 py-4 pr-4 shadow-xl drop-shadow-sm rounded-full">
                 <img alt="gmail" src="/gmail.png" class="w-12 -ml-1 m-2 px-2 md:w-16" />
                 <h3 class=" mr-4 text-xs text-slate-800 font-bold md:text-base">Log in with Gmail</h3>
               </Tag>

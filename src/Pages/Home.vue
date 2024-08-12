@@ -16,7 +16,7 @@
   </div>  
   <div class="bg-slate-200 flex justify-between my-2 border-black px-4 md:px-8 md:w-wd8 md:mx-auto md:text-base rounded-lg">
     <h2 class="py-2 text-lg font-semibold md:text-2xl  ">Map</h2>
-    <div @click="getLocation()" class="bg-cyan-600 rounded-xl space-x-1 w-fit text-center flex px-4 py-2 my-2 text-xs font-semibold shadow-lg md:text-base">
+    <div @click="getLocation()" class="cursor-pointer bg-cyan-600 rounded-xl space-x-1 w-fit text-center flex px-4 py-2 my-2 text-xs font-semibold shadow-lg md:text-base">
       <fingerprint-spinner
         :animation-duration="1500"
         :size="20"
