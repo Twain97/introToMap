@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   
-  <div class="mt-5 mx-auto px-1 flex justify-between w-full  border-red-600 ">
-    <h2 class="bg-slate-200 px-4 py-2 rounded-lg md:ml-32 w-fit text-xs md:text-base">Welcome <span class="font-bold">{{ userName }}</span>.</h2>
+  <div class="mt-5 mx-auto px-1 flex justify-between w-full border-red-600 md:w-wd8 md:mx-auto ">
+    <h2 class="bg-slate-200 px-4 py-2 rounded-lg w-fit text-xs md:text-base">Welcome <span class="font-bold">{{ userName }}</span>.</h2>
     <div class="bg-purple-500 p-2 rounded-lg cursor-pointer font-semibold text-xs md:ml-32 w-fit md:text-base" @click="logOut()">Logout</div>
   </div>
 
