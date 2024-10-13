@@ -3,7 +3,7 @@
   
   <div class="mt-5 mx-auto px-1 flex justify-between w-full  border-red-600 ">
     <h2 class="bg-slate-200 px-4 py-2 rounded-lg md:ml-32 w-fit text-xs md:text-base">Welcome <span class="font-bold">{{ userName }}</span>.</h2>
-    <div class="bg-purple-500 p-2 rounded-lg cursor-pointer font-semibold text-base md:ml-32 w-fit md:text-base" @click="logOut()">Logout</div>
+    <div class="bg-purple-500 p-2 rounded-lg cursor-pointer font-semibold text-xs md:ml-32 w-fit md:text-base" @click="logOut()">Logout</div>
   </div>
 
   <div class="flex justify-between text-xs mt-2 font-semibold bg-slate-200 border-red-500 px-1 md:px-4 md:w-wd8 md:mx-auto md:py-2 md:text-base  rounded-lg">
