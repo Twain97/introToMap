@@ -2,16 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/introToMap/favicon.ico">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-map</title>
+    <script type="module" crossorigin src="/introToMap/assets/index-Jj2rnZVF.js"></script>
+    <link rel="stylesheet" crossorigin href="/introToMap/assets/index-COSW58RZ.css">
   </head>
   <style>
     body{
-      background: linear-gradient(150deg, rgba(4,2,30,0.5), black), url('/bg.png');
+      background: linear-gradient(150deg, rgba(4,2,30,0.5), black), url('/introToMap/bg.png');
       background-repeat: no-repeat;
       background-blend-mode: darken;
       background-size:130%;
@@ -19,7 +21,7 @@
     /* For devices with screens not larger than 480px */
     @media screen and (max-width:480px) { 
       body{
-        background: linear-gradient(150deg, rgba(4, 2, 30, 0.473), black), url('/bg.png');
+        background: linear-gradient(150deg, rgba(4, 2, 30, 0.473), black), url('/introToMap/bg.png');
         background-repeat: no-repeat;
         background-blend-mode: darken;
         height: 100vh;
@@ -29,6 +31,5 @@
   </style>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
