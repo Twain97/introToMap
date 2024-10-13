@@ -1,8 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   
-   <div class="mt-5 ml-3 w-fit bg-slate-200 px-4 py-2 rounded-lg md:ml-32">
-    <h2 class="text-xs md:text-base">Welcome <span class="font-bold">{{ userName }}</span>.</h2>
+  <div class="mt-5 mx-auto px-1 flex justify-between w-full  border-red-600 ">
+    <h2 class="bg-slate-200 px-4 py-2 rounded-lg md:ml-32 w-fit text-xs md:text-base">Welcome <span class="font-bold">{{ userName }}</span>.</h2>
+    <div class="bg-purple-500 p-2 rounded-lg cursor-pointer font-semibold text-base md:ml-32 w-fit md:text-base" @click="logOut()">Logout</div>
   </div>
 
   <div class="flex justify-between text-xs mt-2 font-semibold bg-slate-200 border-red-500 px-1 md:px-4 md:w-wd8 md:mx-auto md:py-2 md:text-base  rounded-lg">
@@ -77,6 +78,30 @@ var gateIcon = L.icon({
     popupAnchor: [-3, -76],
 });
 
+function getLocation(){
+  if(window.navigator.geolocation){
+    window.navigator.geolocation.getCurrentPosition((position)=>{
+     lat.value = position.coords.latitude
+     lng.value = position.coords.longitude
+     map.value.setView([lat.value, lng.value], 13)
+     L.marker([lat.value, lng.value], {draggable: true})
+     .addTo(map.value).
+     on("dragend",(event)=>{
+      console.log(event)
+     });
+    })
+  }else{
+    alert("error")
+  }
+}
+
+function logOut(){
+  if(auth.currentUser){
+    auth.signOut(auth.currentUser)
+    router.push('/')
+  }
+}
+
 
 onMounted(()=>{
   auth.onAuthStateChanged((user)=>{
@@ -90,9 +115,9 @@ onMounted(()=>{
     
   })
 
-  map.value = L.map(mapContainer.value).setView([7.593711, 5.297215], 20);
+  map.value = L.map(mapContainer.value).setView([7.593711, 5.297215], 17);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 17,
+    maxZoom: 25,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map.value);
 7.592394, 5.295203
@@ -148,6 +173,54 @@ L.marker([7.591429, 5.299449], {icon: buildingIcon})
 .bindTooltip("<p class='text-center'> CICT</p>", {permanent: true, className: "my-label", offset: [22, 10] })
 .addTo(map.value)
 
+L.marker([7.594511, 5.296088], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Atiku Hall</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.594792, 5.295659], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> New Admin(2)</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.596503, 5.292445], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Lagos Hostel</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.597641, 5.295583], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Mini Market</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.599130, 5.294886], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Senior Staff Club</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.596694, 5.295664], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Indoor Sport Hall</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.595402, 5.298593], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Sport Complex</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.589739, 5.301994], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Abuja Hostel</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.589739, 5.303383], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Old Library</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.590218, 5.303083], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Lecture Theater</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.589803, 5.297547], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Engineering Workshop</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.589011, 5.297000], {icon: buildingIcon})
+.bindTooltip("<p class='text-center'> Cassava Flake Industry</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
 L.marker([7.589560, 5.298328], {icon: schoolIcon})
 .bindTooltip("<p class='text-center'> Mechanical engineering<br/>department</p>", {permanent: true, className: "my-label", offset: [22, 10] })
 .addTo(map.value)
@@ -181,6 +254,10 @@ L.marker([7.592758, 5.295910], {icon: schoolIcon})
 .addTo(map.value)
 
 L.marker([7.602317, 5.296464], {icon: gateIcon})
+.bindTooltip("<p class='text-center'>Small gate</p>", {permanent: true, className: "my-label", offset: [22, 10] })
+.addTo(map.value)
+
+L.marker([7.598986, 5.302520], {icon: gateIcon})
 .bindTooltip("<p class='text-center'>Main gate</p>", {permanent: true, className: "my-label", offset: [22, 10] })
 .addTo(map.value)
 
@@ -199,22 +276,7 @@ L.marker([7.596150, 5.295226], {icon: buildingIcon})
 
 })
 
-function getLocation(){
-  if(window.navigator.geolocation){
-    window.navigator.geolocation.getCurrentPosition((position)=>{
-     lat.value = position.coords.latitude
-     lng.value = position.coords.longitude
-     map.value.setView([lat.value, lng.value], 13)
-     L.marker([lat.value, lng.value], {draggable: true})
-     .addTo(map.value).
-     on("dragend",(event)=>{
-      console.log(event)
-     });
-    })
-  }else{
-    alert("error")
-  }
-}
+
 </script>
 
 <style>

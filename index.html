@@ -11,8 +11,20 @@
   </head>
   <style>
     body{
-      background-image: url('/bg.jpg');
-      background-size: cover;
+      background: linear-gradient(150deg, rgba(4,2,30,0.5), black), url('/bg.png');
+      background-repeat: no-repeat;
+      background-blend-mode: darken;
+      background-size:130%;
+    }
+    /* For devices with screens not larger than 480px */
+    @media screen and (max-width:480px) { 
+      body{
+        background: linear-gradient(150deg, rgba(4, 2, 30, 0.473), black), url('/bg.png');
+        background-repeat: no-repeat;
+        background-blend-mode: darken;
+        height: 100vh;
+        background-size:190%, 380%;
+      }
     }
   </style>
   <body>
